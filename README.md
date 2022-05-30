@@ -1,4 +1,4 @@
-A simple story point per dev day calculator - literally just a divider at the moment. 
+A simple story point per dev day calculator - literally just a divider at the moment, styling on the way! 
 
 To run locally: 
 
