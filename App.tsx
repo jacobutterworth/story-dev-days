@@ -14,14 +14,14 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         tabBarPosition="bottom"
-        initialRouteName="RecordScreen"
+        initialRouteName="Calculate"
         backBehavior="initialRoute"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color }) => {
             let iconName = '';
-            if (route.name === 'RecordScreen') {
+            if (route.name === 'Calculate') {
               iconName = focused ? 'list-circle' : 'list-circle-outline';
-            } else if (route.name === 'HistoryScreen') {
+            } else if (route.name === 'Previous PPDD') {
               iconName = focused ? 'calendar' : 'calendar-outline';
             }
             return <Ionicons name={iconName} color={color} size={20} />;
@@ -31,8 +31,8 @@ export default function App() {
           tabBarIconStyle: {},
         })}
       >
-        <Tab.Screen name="RecordScreen" component={RecordScreen} />
-        <Tab.Screen name="HistoryScreen" component={HistoryScreen} />
+        <Tab.Screen name="Calculate" component={RecordScreen} />
+        <Tab.Screen name="Previous PPDD" component={HistoryScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

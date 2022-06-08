@@ -1,14 +1,52 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import Spacer from '../components/Spacer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import HistoryCard from '../components/HistoryCard';
 
-const HistoryScreen = () => {
+const HistoryScreen = ({}) => {
+  const sprints: Array<Object> = [
+    {
+      expected: 10,
+      actual: 12,
+      sprintNo: 1,
+      sprintDate: '03/06/22',
+    },
+    {
+      expected: 11,
+      actual: 12,
+      sprintNo: 3,
+      sprintDate: '04/06/22',
+    },
+    {
+      expected: 12,
+      actual: 13,
+      sprintNo: 4,
+      sprintDate: '05/06/22',
+    },
+  ];
+
   return (
-    <SafeAreaProvider>
-      <Text>History </Text>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.container}>
+      <HistoryCard
+        expected={10}
+        actual={4}
+        sprintNo={1}
+        sprintDate={'01/01/22'}
+      ></HistoryCard>
+      <HistoryCard
+        expected={10}
+        actual={4}
+        sprintNo={2}
+        sprintDate={'14/01/22'}
+      ></HistoryCard>
+      <HistoryCard
+        expected={10}
+        actual={4}
+        sprintNo={3}
+        sprintDate={'02/02/22'}
+      ></HistoryCard>
+    </SafeAreaView>
   );
 };
 

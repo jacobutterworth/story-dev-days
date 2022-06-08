@@ -2,13 +2,17 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button, TextInput, Alert } from 'react-native';
 import Spacer from '../components/Spacer';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {
+  SafeAreaFrameContext,
+  SafeAreaInsetsContext,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
 const SettingsScreen = () => {
   return (
-    <SafeAreaProvider>
+    <View>
       <Text>Settings </Text>
-    </SafeAreaProvider>
+    </View>
   );
 };
 
