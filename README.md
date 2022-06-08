@@ -2,9 +2,11 @@ A simple story point per dev day calculator - literally just a divider at the mo
 
 To run locally: 
 
-Install expo CLI globally:
+**Install expo CLI globally:**
 
     npm install --global expo-cli
+    
+**Then:** 
   
     git clone and pull 
 
