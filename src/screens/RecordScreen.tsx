@@ -50,16 +50,6 @@ const RecordScreen = () => {
     console.log(velocity);
   };
 
-  const velocityButtons = [
-    {
-      id: 1,
-      name: 'Start Velocity',
-    },
-    {
-      id: 2,
-      name: 'Finish Velocity',
-    },
-  ];
   return (
     <HideKeyboard>
       <View style={styles.container}>
@@ -144,22 +134,27 @@ const RecordScreen = () => {
                 velocity={parseFloat(storyDevDays.toFixed(2))}
               /> */}
             </View>
-
-            <Modal
-              style={{ backgroundColor: 'red' }}
-              animationType="slide"
-              transparent={false}
-              visible={modalVisible}
-              onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
-                setModalVisible(!modalVisible);
-              }}
-            >
-              <Text> Modela</Text>
-              <Button onPress={() => setModalVisible(false)}> close </Button>
-            </Modal>
           </>
         ) : null}
+
+        <Modal
+          collapsable={true}
+          style={{}}
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text> Modela</Text>
+              <Button onPress={() => setModalVisible(false)}> close </Button>
+            </View>
+          </View>
+        </Modal>
       </View>
     </HideKeyboard>
   );
@@ -189,6 +184,31 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     borderWidth: 45,
     borderStyle: 'solid',
+  },
+  modalView: {
+    height: (Dimensions.get('window').height * 1) / 3,
+    marginBottom: 0,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    borderWidth: 4,
+    borderColor: 'grey',
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: Dimensions.get('window').width + 6,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: (Dimensions.get('window').height * 2) / 3,
   },
 });
 
