@@ -6,10 +6,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import SettingsScreen from './src/screens/SettingsScreen';
 import * as constants from './src/constants';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export default function App() {
   const Tab = createMaterialTopTabNavigator();
-
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -30,6 +30,9 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
           tabBarIconStyle: {},
         })}
+        sceneContainerStyle={{ elevation: 0, zIndex: -1 }}
+        transitionStyle="scroll"
+        // sceneContainerStyle={{ elevation: 0 }}
       >
         <Tab.Screen name="Calculate" component={RecordScreen} />
         <Tab.Screen name="Previous PPDD" component={HistoryScreen} />

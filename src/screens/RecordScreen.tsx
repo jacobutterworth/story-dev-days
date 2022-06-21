@@ -17,14 +17,31 @@ import { Dimensions } from 'react-native';
 import * as constants from '../constants';
 import { Button } from 'react-native-paper';
 import VelocityButtons from '../components/VelocityButtons';
+import {
+  GestureDetector,
+  GestureHandlerRootView,
+  PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
+import { PanGestureHandler } from 'react-native-gesture-handler';
+import { useAnimatedGestureHandler } from 'react-native-reanimated';
+import CustomModal from '../components/CustomModal';
+import GestureModal from '../components/GestureModal';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 const windowHeight = Dimensions.get('window').height;
 
-const RecordScreen = () => {
+interface Props {
+  navigation: any;
+}
+
+const RecordScreen: React.FC<Props> = () => {
   const [storyPoints, onChangeStoryPoints] = React.useState<number | null>(0);
   const [devDays, onChangeDevDays] = React.useState<number | null>(0);
   const [storyDevDays, onChangeStoryDevDays] = React.useState(0);
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalheight, setModalHeight] = React.useState(0);
+
+  // const navigation = useNavigation();
 
   const calcVelocity = (storyPoints: number | null, devDays: number | null) => {
     if (devDays == 0) {
@@ -50,9 +67,13 @@ const RecordScreen = () => {
     console.log(velocity);
   };
 
+  const panGestureEvent =
+    useAnimatedGestureHandler<PanGestureHandlerGestureEvent>({});
+  const navigation = useNavigation();
+
   return (
     <HideKeyboard>
-      <View style={styles.container}>
+      <GestureHandlerRootView style={styles.container}>
         <StatusBar style="auto" />
         <Text style={{ paddingTop: windowHeight / 6 }}>Story Points: </Text>
         <TextInput
@@ -65,6 +86,7 @@ const RecordScreen = () => {
           value={storyPoints !== null ? storyPoints.toString() : ''}
           style={styles.input}
           onFocus={() => {
+            setModalVisible(false);
             if (storyPoints == 0) onChangeStoryPoints(null);
           }}
           textAlign={'center'}
@@ -112,7 +134,7 @@ const RecordScreen = () => {
                 style={{ marginTop: 15, marginHorizontal: 15 }}
                 mode="contained"
                 onPress={() => {
-                  setModalVisible(true);
+                  // setModalVisible(true);
 
                   recordVelocity(parseFloat(storyDevDays.toFixed(2)));
                 }}
@@ -136,8 +158,34 @@ const RecordScreen = () => {
             </View>
           </>
         ) : null}
+        <Button
+          style={{ marginTop: 15, marginHorizontal: 15 }}
+          mode="contained"
+          onPress={() => {
+            setModalVisible(true);
+            recordVelocity(parseFloat(storyDevDays.toFixed(2)));
+          }}
+        >
+          Set velocity? Testing
+        </Button>
 
-        <Modal
+        {modalVisible == true ? (
+          <GestureModal>
+            <View>
+              <Button
+                mode="contained"
+                onPress={() => {
+                  navigation.setOptions({
+                    swipeEnabled: true,
+                  });
+                  setModalVisible(false);
+                }}
+              >
+                Close me
+              </Button>
+              <Text>here</Text>
+            </View>
+            {/* <Modal
           collapsable={true}
           style={{}}
           animationType="slide"
@@ -154,8 +202,10 @@ const RecordScreen = () => {
               <Button onPress={() => setModalVisible(false)}> close </Button>
             </View>
           </View>
-        </Modal>
-      </View>
+        </Modal> */}
+          </GestureModal>
+        ) : null}
+      </GestureHandlerRootView>
     </HideKeyboard>
   );
 };

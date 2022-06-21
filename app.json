@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -26,7 +24,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan",
-      "package": "com.jacobutterworth.storypointscalc"
+      "package": "com.jacobutterworth.storypointscalc",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
